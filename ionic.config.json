@@ -1,0 +1,7 @@
+{
+  "name": "Helppot",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
