@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!--<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Blank
@@ -9,12 +9,64 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Em branco</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
+    <strong>Ready to create an app??</strong>
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
 </ion-content>
+
+
+
+ Cabeçalho 
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      <ion-searchbar placeholder="Buscar Helps"></ion-searchbar>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+-->
+
+
+<!-- corpo do app -->
+<ion-content>
+  <section id="header">
+    <ion-img src="assets/Icones/helppotLogo.png"></ion-img>
+    <h2>Bem-vindo(a)</h2>
+    <p>Entre na sua conta com e-mail ou CPF</p>
+  </section>
+
+  <form id="formulario">
+   <section id="inputs">
+    <ion-list>
+      <ion-label for="email-cpf">E-mail ou CPF:</ion-label>
+      <ion-input type="text" id="email-cpf" class="bordas-radius"></ion-input>
+    
+      <ion-label for="senha">Senha:</ion-label>
+      <ion-input type="password" id="senha" class="bordas-radius"></ion-input>
+    </ion-list>
+   </section>
+
+    <section id="botoes">
+      <ion-button expand="block" type="submit" class="botao-entrar bordar-radius">Entrar</ion-button>
+      <ion-button fill="outline" class="botao-google bordar-radius" expand="block"> <ion-img src="assets/Icones/google-icon.svg"></ion-img> Entrar com o Google</ion-button>
+      <ion-button expand="block" color="tertiary" fill="outline">Cadastre-se</ion-button>
+
+      <p style="text-align: center;">Esqueceu a senha? <a href="#">Clique aqui!</a></p>
+    </section>
+  </form>
+</ion-content>
+
+
+
+<!-- rodape 
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer Toolbar</ion-title>
+  </ion-toolbar>
+</ion-footer>
+-->

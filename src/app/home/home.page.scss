@@ -1,27 +1,124 @@
-#container {
-  text-align: center;
+// cor roxa: tertiary
+// cor botao-google: light
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
+// aplicação completa
+*{
   margin: 0;
+  padding: 0;
+  font-family: arial;
+  box-sizing: border-box;
 }
 
-#container a {
+.bordas-radius {
+  border-radius: 3rem;
+}
+
+a {
   text-decoration: none;
+  color: #6F66E9;
+}
+
+
+
+
+// header
+section#header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 0 0 0;
+}
+
+section#header ion-img {
+  width: 150px;
+}
+
+section#header h2{
+  margin-bottom: 10px;
+}
+
+section#header p {
+  font-size: 0.9rem;
+}
+
+
+
+// formulario
+form#formulario {
+  margin-top: 25px;
+  padding: 0 2rem;
+}
+
+form#formulario #inputs {
+  margin-bottom: 30px;
+}
+
+form#formulario #inputs ion-label {
+  font-size: 0.9rem;
+}
+
+
+form#formulario #inputs ion-input {
+  border: none;
+  background-color: #F4F3F3;
+  margin-top: 10px;
+  height: 41px;
+  --padding-start: 1rem;
+}
+
+ion-input {
+  --highlight-color-focused: none; 
+  --ion-border-color: transparent;
+}
+
+
+
+
+form#formulario #inputs ion-input[type="text"]{
+  margin-bottom: 20px;
+
+}
+
+
+form#formulario #botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form#formulario #botoes ion-button {
+  font-weight: 600;
+  --border-radius: 3rem;
+  height: 41px;
+  font-size: 0.9rem;
+  text-transform: none;
+
+}
+
+form#formulario #inputs ion-input {
+  outline: none;
+}
+
+form#formulario #botoes ion-button.botao-entrar  {
+  --color: #fff;
+  --background: #6F66E9;
+}
+
+form#formulario #botoes ion-button.botao-google {
+  --color: #5B5C62;
+  --background: #fff;
+  --border-color: #C7C7C7;
+}
+
+form#formulario #botoes ion-button.botao-google ion-img {
+  width: 15px;
+  margin-right: 8px;
+}
+
+
+form#formulario p {
+  font-size: 0.9rem;
+  margin-top: 20px;
+
 }
