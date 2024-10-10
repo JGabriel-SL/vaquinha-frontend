@@ -1,11 +1,6 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <div id="buscar">
-      <ion-input placeholder="Buscar Helps"></ion-input>
-      <ion-button>
-        <ion-icon slot="icon-only" name="search"></ion-icon>
-      </ion-button>
-    </div>
+    <ion-title>Meus Helps</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +9,6 @@
 <ion-tabs>
   <ion-content [fullscreen]="true">
     <div class="container">
-      <h4>Alguns helps para você</h4>
       <!--  
       <ion-card>
         <img alt="imagem-help" src="assets/Icones/golden-retriever-1.webp" />
@@ -23,7 +17,6 @@
             <span id="nome-help">Tratamento do Bob</span>
             <ion-button class="salvo">
               <i class="fa-regular fa-bookmark"></i>
-              
             </ion-button>
           </ion-card-title>
   
@@ -32,17 +25,31 @@
       
         <ion-card-content>
           <span class="sifrao-valor-arrecadado">R$ </span><span class="valor-arrecadado"> </span> de <span class="sifrao-valor-meta">R$ </span><span class="valor-meta"> </span>
+          
+          <p>Status: <span id="status" class="nao-ativo" >Encerrado</span></p>
+
+          <ion-select label="Gerenciar" label-placement="floating"  id="gerenciar">
+            <ion-select-option value="encerrar-help">Encerrar Help</ion-select-option>
+            <ion-select-option value="editar-help">Editar Help</ion-select-option>
+            <ion-select-option value="ver-detalhes">Ver detalhes</ion-select-option>
+          </ion-select>
         </ion-card-content>
-  
-        <ion-button fill="outline" class="botao-ver-detalhes" color="tertiary">Ver detalhes</ion-button>
+
       </ion-card>
       -->
+      
+
+      
+
+
+      
+      
     </div>
   </ion-content>
 
 
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="feed" class="ativo">
+    <ion-tab-button tab="feed" >
       <i class="fa-solid fa-bars" name="feed"></i>
       Feed
     </ion-tab-button>
@@ -52,7 +59,7 @@
       Criar Help
     </ion-tab-button>
 
-    <ion-tab-button tab="meus-helps">
+    <ion-tab-button tab="meus-helps" class="ativo">
       <i class="fa-solid fa-heart" name="meus-helps"></i>
       Meus Helps
     </ion-tab-button>

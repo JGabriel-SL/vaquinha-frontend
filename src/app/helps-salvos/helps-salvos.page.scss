@@ -3,41 +3,18 @@
 }
 
 
-
-// header
-ion-toolbar{
-    --padding-start: 2rem;
-    --padding-end: 2rem;
+ion-title{
+    --color: #fff;
 }
 
-
-#buscar {
-    display: flex;
-    background-color: #fff; 
-    border-radius: 3rem;
-    padding: 0 0.5rem 0 0;
-    margin-bottom: 5px;
+ion-back-button {
+    color: #fff;
 }
 
-#buscar ion-input {
-    --padding-start: 1rem;
+ion-content {
     font-size: 0.9rem;
+    
 }
-
-
-#buscar ion-button {
-    --background: transparent;
-    --color: #6F66E9;
-    --box-shadow: none;
-
-}
-
-#buscar ion-input {
-    --highlight-color-focused: none; 
-    --ion-border-color: transparent;
-}
-
-
 
 
 // container
@@ -45,10 +22,6 @@ ion-card {
     --background: #F4F3F3;
 }
 
-ion-content {
-    position: absolute;
-    top: 8%;
-}
 
 ion-content div.container:last-child{
     margin-bottom: 150px;
@@ -57,13 +30,9 @@ ion-content div.container:last-child{
 
 .container {
     padding: 0 2rem;
+    margin-top: 30px;
 }
 
-
-.container>h4 {
-    margin-bottom: 15px;
-    color: #646465;
-}
 
 ion-card {
     padding-bottom: 1rem;
@@ -101,8 +70,6 @@ ion-card-content {
     font-size: 1rem;
 }
 
-
-
 ion-card-content span.valor-arrecadado,
 ion-card-content span.sifrao-valor-arrecadado {
     color: #6F66E9;
@@ -121,20 +88,3 @@ ion-card ion-button.botao-ver-detalhes {
     font-weight: bold;
     margin-left: 1rem;
 }
-
-
-
-
-// menu-tabs {
-ion-tab-button i {
-    font-size: 1.3rem;
-    margin-bottom: 5px;
-}
-
-ion-tab-button.ativo {
-    color: #6F66E9;
-    border-top: solid #6F66E9 2px;
-    
-    
-}
-

@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+    
+}
+
+
+
+// header
+ion-title{
+    --color: #fff;
+}
+
+ion-toolbar {
+    --padding-start: 1.1rem;
+}
+
+ion-content {
+    position: absolute;
+    top: 10%;
+    --padding-start: 2rem;
+    --padding-end: 2rem;
+    font-size: 0.9rem;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+
+div.imagem-nome-usuario {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+div.imagem-usuario {
+    width: 58px;
+    height: 58px;
+    border-radius: 100%;
+    
+}
+
+div.imagem-usuario>img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+div.imagem-nome-usuario {
+    margin-bottom: 30px;
+}
+
+
+
+div.informacoes-usuario {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+div.informacoes-usuario span.nome-usuario {
+    font-size: 0.9rem;
+    color:#3a3a3a;
+    font-weight: bold;
+}
+
+div.informacoes-usuario span.email-usuario{
+    color: #5A5353;
+}
+
+
+
+
+div.opcoes-conta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+ion-button:nth-child(-n + 3){
+    --color: #6F66E9;
+    --background:none;
+}
+
+ion-button {
+    --border-radius: 3rem;
+    text-transform: none;
+    height: 41px;
+}
+
+ion-button i {
+    margin-right: 5px;
+    font-size: 1.4rem;
+}
+
+ion-button.botao-sair {
+    --background:#fff;
+    --color: #E96668;
+    --box-shadow: none;
+    margin-top: 40px;
+}
+
+
+
+
+
+// menu-tabs {
+ion-tab-button i {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+ion-tab-button.ativo {
+    color: #6F66E9;
+    border-top: solid #6F66E9 2px;
+    
+    
+}
+
+
+
+

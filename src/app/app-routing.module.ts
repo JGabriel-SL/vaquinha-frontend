@@ -19,6 +19,46 @@ const routes: Routes = [
     path: 'feed',
     loadChildren: () => import('./feed/feed.module').then( m => m.FeedPageModule)
   },
+  {
+    path: 'ver-detalhes-feed',
+    loadChildren: () => import('./ver-detalhes-feed/ver-detalhes-feed.module').then( m => m.VerDetalhesFeedPageModule)
+  },
+  {
+    path: 'criar-help',
+    loadChildren: () => import('./criar-help/criar-help.module').then( m => m.CriarHelpPageModule)
+  },
+  {
+    path: 'termos-uso',
+    loadChildren: () => import('./termos-uso/termos-uso.module').then( m => m.TermosUsoPageModule)
+  },
+  {
+    path: 'meus-helps',
+    loadChildren: () => import('./meus-helps/meus-helps.module').then( m => m.MeusHelpsPageModule)
+  },
+  {
+    path: 'editar-help',
+    loadChildren: () => import('./editar-help/editar-help.module').then( m => m.EditarHelpPageModule)
+  },
+  {
+    path: 'ver-detalhes-help',
+    loadChildren: () => import('./ver-detalhes-help/ver-detalhes-help.module').then( m => m.VerDetalhesHelpPageModule)
+  },
+  {
+    path: 'editar-conta',
+    loadChildren: () => import('./editar-conta/editar-conta.module').then( m => m.EditarContaPageModule)
+  },
+  {
+    path: 'helps-salvos',
+    loadChildren: () => import('./helps-salvos/helps-salvos.module').then( m => m.HelpsSalvosPageModule)
+  },
+  {
+    path: 'meu-saldo',
+    loadChildren: () => import('./meu-saldo/meu-saldo.module').then( m => m.MeuSaldoPageModule)
+  },
+  {
+    path: 'conta',
+    loadChildren: () => import('./conta/conta.module').then( m => m.ContaPageModule)
+  },
 ];
 
 @NgModule({

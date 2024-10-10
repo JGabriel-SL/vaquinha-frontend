@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-tabs>
+  <ion-content [fullscreen]="true">
+    <div class="container">
+      
+      <div class="imagem-nome-usuario">
+        <div class="imagem-usuario">
+          <img src="https://i.pinimg.com/474x/98/43/1a/98431a96f44d5e42094cab4db691901a.jpg" alt="foto-usuario">
+        </div>
+        <div class="informacoes-usuario">
+          <span class="nome-usuario">Lucas Marinho</span>
+          <span class="email-usuario">lucasmarinho</span>
+        </div>
+      </div>
+
+
+      <div class="opcoes-conta">
+        <ion-button id="botao-editar-conta"><i class="fa-solid fa-pen-to-square"></i> Editar conta</ion-button>
+        <ion-button id="botao-helps-salvos"><i class="fa-solid fa-bookmark"></i>
+          Helps salvos</ion-button>
+        <ion-button id="botao-meu-saldo"><i class="fa-solid fa-money-bill"></i> Meu saldo</ion-button>
+
+        <ion-button class="botao-sair"><i class="fa-solid fa-right-from-bracket"></i>Sair</ion-button>
+      </div>
+  
+
+
+    </div>  
+  </ion-content>
+
+
+  <!-- MENU -->
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="feed" >
+      <i class="fa-solid fa-bars" name="feed"></i>
+      Feed
+    </ion-tab-button>
+
+    <ion-tab-button tab="criar-help">
+      <i class="fa-solid fa-plus" name="criar-help"></i>
+      Criar Help
+    </ion-tab-button>
+
+    <ion-tab-button tab="meus-helps">
+      <i class="fa-solid fa-heart" name="meus-helps"></i>
+      Meus Helps
+    </ion-tab-button>
+
+    <ion-tab-button type="submit" tab="conta" class="ativo">
+      <i class="fa-solid fa-user" name="conta"></i>
+      Conta
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+
+
+
+
+
+

@@ -1,0 +1,149 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+ion-title{
+    --color: #fff;
+}
+
+ion-back-button {
+    color: #fff;
+}
+
+
+ion-toolbar {
+    --box-shadow: none;
+}
+
+
+// CONTAINER
+.container {
+    padding: 2rem 2rem;
+}
+
+// imagem help
+div.img-help {
+    height: 150px;
+    width: 100%;
+    
+}
+
+div.img-help>img{
+    width: 100%;
+    height: 100%;
+    // height: 150px !important;
+    // object-fit: cover;
+    object-fit: cover;
+    border-radius: 1.5rem;
+}
+
+
+// informações do help
+div.informacoes-help h3 {
+    color: #3a3a3a;
+}
+div.informacoes-help span.valor-arrecadado {
+    font-weight: bold;
+    color: #6F66E9;
+}
+
+div.informacoes-help span.valor-meta {
+    font-weight: bold;
+    color: #3a3a3a;
+}
+
+.container>div.informacoes-help{
+    margin-top: 20px;
+}
+
+.container>div.informacoes-help p:nth-child(1){
+    color: #646465;
+    font-size: 0.9rem;
+}
+
+.container>div.informacoes-help p:nth-child(3){
+    font-size: 0.9rem;
+}
+
+.container>div.informacoes-help h3 {
+    font-weight: bold;
+    line-height: 2.5rem;
+}
+
+
+// descrição do help
+.container>div.descricao-help {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.container>div.descricao-help p {
+    line-height: 1.5rem;
+    color: #3a3a3a;
+    font-size: 0.9rem;
+}
+
+
+
+// pix do help
+.container>div.pix-help p,
+.container>div.data-encerramento p{
+    font-weight: bold;
+    color:#3a3a3a;
+}
+
+div.chave-pix,
+div.data-encerramento-help {
+    width: 100%;
+    height: 41px;
+    background-color: #F4F3F3;
+    border-radius: 3rem;
+    padding: 0.7rem 1rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.container>div.pix-help span,
+.container>div.pix-help p,
+.container>div.data-encerramento span,
+.container>div.data-encerramento p {
+    font-size: 0.9rem;
+}
+
+
+
+
+
+
+div.criador-help>p {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+div.imagem-nome-usuario {
+    margin-bottom: 30px;
+}
+
+div.imagem-nome-usuario span.nome-usuario {
+    font-size: 0.9rem;
+    color:#3a3a3a;
+    font-weight: bold;
+}
+
+
+.container>p {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color:#3a3a3a;
+}
+
+div.lista-imagens>div.item-imagem {
+    margin-bottom: 10px;
+}
+
+
+
+
+
+

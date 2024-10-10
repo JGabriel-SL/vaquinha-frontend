@@ -1,0 +1,181 @@
+* {
+    box-sizing: border-box;
+    
+}
+
+
+
+// header
+ion-title{
+    --color: #fff;
+}
+
+ion-toolbar {
+    --padding-start: 1.1rem;
+}
+
+ion-content {
+    position: absolute;
+    top: 10%;
+    --padding-start: 2rem;
+    --padding-end: 2rem;
+    font-size: 0.9rem;
+}
+
+.container {
+    margin-bottom: 200px;
+}
+
+
+
+
+// form
+ion-input {
+    background-color: #F4F3F3;
+    border-radius: 3rem;
+    --padding-start: 1rem;
+}
+
+ion-input,
+ion-select,
+ion-textarea {
+    --highlight-color-focused: none; 
+    --ion-border-color: transparent;
+}
+
+ion-input[type="text"] {
+    margin-bottom: 15px;
+}
+
+ion-input:nth-child(2){
+    margin-bottom: 30px;
+}
+
+ion-input[type="date"]{
+    margin-top: 10px;
+    color:#7e7e7e;
+    --padding-end: 1rem;
+}
+
+ion-label, p {
+    color: #3a3a3a;
+    font-weight: 600;
+}
+
+#chave-pix{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+ion-select {
+    background-color: #F4F3F3;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    --padding-start: 1rem ;
+    --padding-end: 1rem;
+    border-radius: 3rem;
+    color: #7e7e7e;
+}
+
+ion-textarea {
+    font-size: 0.9rem;
+    background-color: #F4F3F3;
+    border-radius: 2rem;
+    --padding-start: 1rem;
+    margin-bottom: 30px;
+}
+
+
+form>div.imagem-help {
+    width: 100%;
+    height: 170px;
+    background-color: #F4F3F3;
+    border-radius: 2rem;
+}
+
+form>div.imagem-help img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+}
+
+form>ion-button.botao-imagem-help {
+    margin-bottom: 35px;
+}
+
+form>ion-button.botao-imagem-help,
+form>ion-button.botao-imagem-provas {
+    width: 100%;
+    --border-radius: 3rem;
+    --height: 41px;
+    margin-top: 20px;
+    text-transform: none;
+}
+
+
+
+
+// form ion-list ion-item:last-child{
+    // margin-bottom: 150px;
+// }
+
+form div.imagem-prova>img {
+    border-radius: 2rem;
+}
+
+form>ion-button.botao-imagem-provas{
+    --background: none;
+    --color: #E96668;
+    --border-color: solid 1px #E96668;
+    margin-bottom: 30px;
+
+}
+
+
+form>div.termos {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+form>div.termos>span {
+    font-size: 0.9rem;
+}
+
+form>div.termos a {
+    color: #6F66E9;
+}
+
+
+ion-checkbox {
+    font-size: 0.9rem;
+}
+
+form>ion-button.botao-criar-help {
+    --color: #fff;
+    --background: #6F66E9; 
+    width: 100%;
+    height: 41px;
+    --border-radius: 3rem;
+    margin-top: 60px;
+    text-transform: none;
+    font-size: 0.9rem;
+}
+
+
+// menu-tabs {
+ion-tab-button i {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+ion-tab-button.ativo {
+    color: #6F66E9;
+    border-top: solid #6F66E9 2px;
+    
+    
+}
+
+
+
+
