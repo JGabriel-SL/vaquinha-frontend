@@ -1,6 +1,6 @@
+// src/app/criar-help/criar-help-routing.module.ts
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { CriarHelpPage } from './criar-help.page';
 
 const routes: Routes = [

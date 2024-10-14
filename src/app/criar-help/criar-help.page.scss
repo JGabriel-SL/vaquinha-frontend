@@ -34,6 +34,7 @@ ion-input {
     background-color: #F4F3F3;
     border-radius: 3rem;
     --padding-start: 1rem;
+    --ion-border-color: transparent;
 }
 
 ion-input,
@@ -41,6 +42,7 @@ ion-select,
 ion-textarea {
     --highlight-color-focused: none; 
     --ion-border-color: transparent;
+    border: none;
 }
 
 ion-input[type="text"] {
@@ -101,7 +103,7 @@ form>div.imagem-help img {
 }
 
 form>ion-button.botao-imagem-help {
-    margin-bottom: 35px;
+    margin-bottom: 5px;
 }
 
 form>ion-button.botao-imagem-help,
@@ -124,7 +126,7 @@ form div.imagem-prova>img {
     border-radius: 2rem;
 }
 
-form>ion-button.botao-imagem-provas{
+form>ion-button.botao-apagar-imagens{
     --background: none;
     --color: #E96668;
     --border-color: solid 1px #E96668;
@@ -175,7 +177,5 @@ ion-tab-button.ativo {
     
     
 }
-
-
 
 

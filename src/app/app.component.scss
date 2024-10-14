@@ -1,0 +1,21 @@
+ion-input,
+ion-select,
+ion-textarea {
+    --highlight-color-focused: transparent; // Remover a cor de destaque
+    --ion-border-color: transparent; // Remover a cor da borda
+    border: none; // Remover a borda padrão
+    box-shadow: none; // Remover qualquer sombra
+}
+
+ion-input:focus,
+ion-select:focus,
+ion-textarea:focus {
+    --ion-border-color: transparent; // Garantir que a borda permaneça transparente ao focar
+    box-shadow: none; // Remover sombra ao focar
+}
+
+ion-input::part(native),
+ion-select::part(native),
+ion-textarea::part(native) {
+    border: none; // Remover borda de partes nativas (se necessário)
+}

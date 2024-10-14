@@ -1,4 +1,7 @@
+// src/app/feed/feed.page.ts
 import { Component, OnInit } from '@angular/core';
+import { HelpService, Help } from '../services/help.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-feed',
@@ -6,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feed.page.scss'],
 })
 export class FeedPage implements OnInit {
+  helps$: Observable<Help[]>;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private helpService: HelpService) {
+    this.helps$ = this.helpService.getHelps();
   }
 
+  ngOnInit() {}
 }

@@ -9,64 +9,59 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <h4>Alguns helps para você</h4>
+    <!-- Exemplo de card comentado -->
+    <!--
+    <ion-card>
+      <img alt="imagem-help" src="assets/Icones/golden-retriever-1.webp" />
+      <ion-card-header>
+        <ion-card-title>
+          <span id="nome-help">Tratamento do Bob</span>
+          <ion-button class="salvo">
+            <i class="fa-regular fa-bookmark"></i>
+          </ion-button>
+        </ion-card-title>
+        <ion-card-subtitle>Categoria: <span>Saúde</span></ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <span class="sifrao-valor-arrecadado">R$ </span><span class="valor-arrecadado"> </span> de <span class="sifrao-valor-meta">R$ </span><span class="valor-meta"> </span>
+      </ion-card-content>
+      <ion-button fill="outline" class="botao-ver-detalhes" color="tertiary">Ver detalhes</ion-button>
+    </ion-card>
+    -->
+    <ion-list>
+      <ion-item *ngFor="let help of helps$ | async">
+        <ion-thumbnail slot="start">
+          <img [src]="help.imagemUrl || 'assets/default-image.png'" alt="Imagem do Help" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ help.nome }}</h2>
+          <p>Quantia: {{ help.quantia }}</p>
+          <p>Categoria: {{ help.categoria | titlecase }}</p>
+          <p>Data de Encerramento: {{ help.dataEncerramento | date }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
 
-
-<ion-tabs>
-  <ion-content [fullscreen]="true">
-    <div class="container">
-      <h4>Alguns helps para você</h4>
-      <!--  
-      <ion-card>
-        <img alt="imagem-help" src="assets/Icones/golden-retriever-1.webp" />
-        <ion-card-header>
-          <ion-card-title>
-            <span id="nome-help">Tratamento do Bob</span>
-            <ion-button class="salvo">
-              <i class="fa-regular fa-bookmark"></i>
-              
-            </ion-button>
-          </ion-card-title>
-  
-          <ion-card-subtitle>Categoria: <span>Saúde</span></ion-card-subtitle>
-        </ion-card-header>
-      
-        <ion-card-content>
-          <span class="sifrao-valor-arrecadado">R$ </span><span class="valor-arrecadado"> </span> de <span class="sifrao-valor-meta">R$ </span><span class="valor-meta"> </span>
-        </ion-card-content>
-  
-        <ion-button fill="outline" class="botao-ver-detalhes" color="tertiary">Ver detalhes</ion-button>
-      </ion-card>
-      -->
-    </div>
-  </ion-content>
-
-
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="feed" class="ativo">
-      <i class="fa-solid fa-bars" name="feed"></i>
-      Feed
-    </ion-tab-button>
-
-    <ion-tab-button tab="criar-help">
-      <i class="fa-solid fa-plus" name="criar-help"></i>
-      Criar Help
-    </ion-tab-button>
-
-    <ion-tab-button tab="meus-helps">
-      <i class="fa-solid fa-heart" name="meus-helps"></i>
-      Meus Helps
-    </ion-tab-button>
-
-    <ion-tab-button tab="conta">
-      <i class="fa-solid fa-user" name="conta"></i>
-      Conta
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
-
-
-
-
-
-
-
+<ion-tab-bar slot="bottom">
+  <ion-tab-button tab="feed" class="ativo" [routerLink]="['/feed']">
+    <i class="fa-solid fa-bars" name="feed"></i>
+    Feed
+  </ion-tab-button>
+  <ion-tab-button tab="criar-help" [routerLink]="['/criar-help']">
+    <i class="fa-solid fa-plus" name="criar-help"></i>
+    Criar Help
+  </ion-tab-button>
+  <ion-tab-button tab="meus-helps" [routerLink]="['/meus-helps']">
+    <i class="fa-solid fa-heart" name="meus-helps"></i>
+    Meus Helps
+  </ion-tab-button>
+  <ion-tab-button tab="conta" [routerLink]="['/conta']">
+    <i class="fa-solid fa-user" name="conta"></i>
+    Conta
+  </ion-tab-button>
+</ion-tab-bar>

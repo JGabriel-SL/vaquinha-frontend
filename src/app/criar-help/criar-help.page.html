@@ -1,92 +1,93 @@
+<!-- src/app/criar-help/criar-help.page.html -->
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-title>Criar Help</ion-title>
   </ion-toolbar>
 </ion-header>
 
-
-
 <ion-tabs>
   <ion-content [fullscreen]="true">
     <div class="container">
-      <form>
-        <ion-input type="text" placeholder="Nome do Help" id="nome-help"></ion-input>
-
-        <ion-input type="text" placeholder="De quanto precisa?" id="quantia-help"></ion-input>
+      <form (ngSubmit)="criarHelp()">
+        
+        <ion-input type="text" placeholder="Nome do Help" [(ngModel)]="nome" name="nome" required></ion-input>
+        
+        <ion-input type="text" placeholder="De quanto precisa?" [(ngModel)]="quantia" name="quantia" required></ion-input>        
 
         <ion-label for="data-encerramento">Data de encerramento:</ion-label>
-        <ion-input type="date" id="data-encerramento"></ion-input>
+        <ion-input type="date" [(ngModel)]="dataEncerramento" name="dataEncerramento" required></ion-input>
 
-        <ion-select label="Categoria" label-placement="floating" id="categoria">
+        <ion-select label="Categoria" [(ngModel)]="categoria" label-placement="floating" id="categoria" name="categoria" required>
           <ion-select-option value="saude">Saúde</ion-select-option>
           <ion-select-option value="educação">Educação</ion-select-option>
           <ion-select-option value="comunidade">Comunidade</ion-select-option>
           <ion-select-option value="emergencia">Emergência</ion-select-option>
         </ion-select>
-
+      
         <p>Descrição do Help:</p>
-        <ion-textarea rows="10" placeholder="Insira a descrição do Help" id="descricao-help"></ion-textarea>
+        <ion-textarea [(ngModel)]="descricao" placeholder="Insira a descrição do Help" name="descricao" rows="10" id="descricao-help" required></ion-textarea>
+        
+        <ion-label for="chave-pix">Chave Pix</ion-label>
+        <ion-input type="text" placeholder="Insira a chave pix" [(ngModel)]="chavePix" name="chavePix" required></ion-input>
+        
 
-        <p>Imagem da capa do Help:</p>
+        <!-- Seção para imagem principal -->
         <div class="imagem-help">
-          <!-- <img src="https://love.doghero.com.br/wp-content/uploads/2018/12/golden-retriever-1.png"  alt="imagem-help" > -->
+          <img *ngIf="imagem" [src]="imagem" alt="Imagem da capa do Help" />
         </div>
-        <ion-button class="botao-imagem-help" fill="outline" color="tertiary">Selecione uma imagem</ion-button>
+        <input type="file" (change)="onFileSelected($event)" hidden #fileInputMain accept="image/*" />
+        <ion-button class="botao-imagem-help" fill="outline" color="tertiary" (click)="abrirFileInput('main')">
+          Selecione uma imagem
+        </ion-button>
 
-        <ion-label for="chave-pix">Chave pix:</ion-label>
-        <ion-input placeholder="Insira a chave pix" id="chave-pix"></ion-input>
+        <ion-button class="botao-imagem-provas botao-apagar-imagens" fill="outline" (click)="apagarImagem()">
+          Apagar a imagem
+        </ion-button>
 
+        <!-- Seção para anexar provas -->
         <p>Anexar Provas (Fotos, Imagens):</p>
-        <ion-button class="botao-imagem-provas" fill="outline" color="tertiary">Selecione as imagens</ion-button>
+        <input type="file" (change)="onProvasSelected($event)" hidden #fileInputProvas accept="image/*" multiple />
+        
+        <ion-button  class="botao-imagem-provas" fill="outline" color="tertiary" (click)="abrirFileInput('provas')">
+          Selecione as imagens
+        </ion-button>
+
         <div class="imagens-provas">
-          <div class="imagem-prova">
-            <!-- <img src="https://love.doghero.com.br/wp-content/uploads/2018/12/golden-retriever-1.png" alt="" loading="lazy"> -->
+          <div class="imagem-prova" *ngFor="let img of imagensProvas">
+            <img [src]="img" alt="Prova" loading="lazy" />
           </div>
         </div>
 
-        <ion-button class="botao-imagem-provas" fill="outline">Apagar a imagem</ion-button>
-        
+        <ion-button class="botao-imagem-provas botao-apagar-imagens" fill="outline"  (click)="apagarProvas()">
+          Apagar as imagens
+        </ion-button>
+
         <div class="termos">
-          <ion-checkbox labelPlacement="end"></ion-checkbox>
-          <span>Li e estou estou de acordo com o termo de uso e condições. <a href="#">Ler os termos</a> </span> 
+          <ion-checkbox [(ngModel)]="termosAceitos" name="termosAceitos"></ion-checkbox>
+          <span>Li e estou de acordo com os <a href="#" [routerLink]="['/termos-uso']">termos de uso</a> e condições.</span>
         </div>
 
-
-        <ion-button  class="botao-criar-help">Criar Help</ion-button>
+        <ion-button type="submit" class="botao-criar-help">Criar Help</ion-button>
       </form>
-
-
-    </div>  
+    </div>
   </ion-content>
-
 
   <!-- MENU -->
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="feed" >
+    <ion-tab-button tab="feed" [routerLink]="['/feed']">
       <i class="fa-solid fa-bars" name="feed"></i>
       Feed
     </ion-tab-button>
-
-    <ion-tab-button tab="criar-help" class="ativo">
+    <ion-tab-button tab="criar-help" class="ativo" [routerLink]="['/criar-help']">
       <i class="fa-solid fa-plus" name="criar-help"></i>
       Criar Help
     </ion-tab-button>
-
-    <ion-tab-button tab="meus-helps">
+    <ion-tab-button tab="meus-helps" [routerLink]="['/meus-helps']">
       <i class="fa-solid fa-heart" name="meus-helps"></i>
       Meus Helps
     </ion-tab-button>
-
-    <ion-tab-button type="submit" tab="conta">
+    <ion-tab-button tab="conta" [routerLink]="['/conta']">
       <i class="fa-solid fa-user" name="conta"></i>
       Conta
     </ion-tab-button>
   </ion-tab-bar>
-</ion-tabs>
-
-
-
-
-
-
-

@@ -1,29 +1,33 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
-      <ion-back-button default-href="../home/home.page.html"></ion-back-button>
+      <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
     <ion-title>Cadastro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form>
-    <div id="imagem-perfil"></div>
-    <ion-button class="definir-foto">Definir foto do perfil</ion-button>
+  <form (submit)="cadastrar($event)">
+    <div id="imagem-perfil">
+      <img *ngIf="imagem" [src]="imagem" alt="Imagem do Perfil" />
+    </div>
+    <input type="file" (change)="onFileSelected($event)" hidden id="file-input" accept="image/*" />
+
+    <ion-button type="button" class="definir-foto" (click)="uploadImage()">Definir foto do perfil</ion-button>
 
 
-    <ion-input type="text" placeholder="Nome" id="nome-usuario"></ion-input>
+    <ion-input type="text" [(ngModel)]="nome" placeholder="Nome" id="nome-usuario"></ion-input>
 
-    <ion-input type="text" placeholder="CPF" id="cpf-usuraio"></ion-input>
+    <ion-input type="text" [(ngModel)]="cpf" placeholder="CPF" id="cpf-usuraio"></ion-input>
 
-    <ion-input type="e-mail" placeholder="E-mail" id="email-usuario"></ion-input>
+    <ion-input type="e-mail" [(ngModel)]="email" placeholder="E-mail" id="email-usuario"></ion-input>
 
-    <ion-input type="telefon" placeholder="Telefone" id="telefone-usuario"></ion-input>
+    <ion-input type="telefon" [(ngModel)]="telefone" placeholder="Telefone" id="telefone-usuario"></ion-input>
 
-    <ion-input type="text" placeholder="CEP" id="cep-usuario"></ion-input>
+    <ion-input type="text" [(ngModel)]="cep" placeholder="CEP" id="cep-usuario"></ion-input>
 
-    <ion-input type="text" placeholder="Senha" id="senha-usuario"></ion-input>
+    <ion-input type="text" [(ngModel)]="senha" placeholder="Senha" id="senha-usuario"></ion-input>
 
     <ion-button type="submit" class="botao-cadastrar">
       Cadastrar

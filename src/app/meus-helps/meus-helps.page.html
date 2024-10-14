@@ -9,7 +9,7 @@
 <ion-tabs>
   <ion-content [fullscreen]="true">
     <div class="container">
-      <!--  
+       
       <ion-card>
         <img alt="imagem-help" src="assets/Icones/golden-retriever-1.webp" />
         <ion-card-header>
@@ -36,7 +36,7 @@
         </ion-card-content>
 
       </ion-card>
-      -->
+      
       
 
       
@@ -48,28 +48,25 @@
   </ion-content>
 
 
+  <!-- MENU -->
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="feed" >
+    <ion-tab-button tab="feed" [routerLink]="['/feed']">
       <i class="fa-solid fa-bars" name="feed"></i>
       Feed
     </ion-tab-button>
-
-    <ion-tab-button tab="criar-help">
+    <ion-tab-button tab="criar-help" [routerLink]="['/criar-help']">
       <i class="fa-solid fa-plus" name="criar-help"></i>
       Criar Help
     </ion-tab-button>
-
-    <ion-tab-button tab="meus-helps" class="ativo">
+    <ion-tab-button tab="meus-helps" class="ativo" [routerLink]="['/meus-helps']">
       <i class="fa-solid fa-heart" name="meus-helps"></i>
       Meus Helps
     </ion-tab-button>
-
-    <ion-tab-button tab="conta">
+    <ion-tab-button tab="conta" [routerLink]="['/conta']">
       <i class="fa-solid fa-user" name="conta"></i>
       Conta
     </ion-tab-button>
   </ion-tab-bar>
-</ion-tabs>
 
 
 
