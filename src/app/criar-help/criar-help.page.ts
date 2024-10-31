@@ -1,8 +1,10 @@
 // src/app/criar-help/criar-help.page.ts
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { HelpService, Help } from '../services/help.service';
+import { HelpService } from '../services/help.service';
+import { Help } from '../models/help.model';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { v4 as uuidv4 } from 'uuid'; // Import para gerar ID único
 
 @Component({
   selector: 'app-criar-help',
@@ -10,33 +12,32 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./criar-help.page.scss'],
 })
 export class CriarHelpPage {
-  imagem: string | ArrayBuffer | null = null; // Para exibir a imagem selecionada
-  arquivoSelecionado: File | null = null; // Para armazenar o arquivo selecionado
+  @ViewChild('fileInputMain') fileInputMain!: ElementRef<HTMLInputElement>;
+  @ViewChild('fileInputProvas') fileInputProvas!: ElementRef<HTMLInputElement>;
 
   // Campos do formulário
   nome: string = '';
-  quantia: string = '';
-  dataEncerramento: string = '';
+  quantia: string = ''; // Mantém como string para capturar entrada do usuário
+  dataInicio: string = new Date().toISOString(); // Adicionado para capturar a data de início
+  dataEncerramento: string = ''; // String para a data
   categoria: string = '';
   descricao: string = '';
   chavePix: string = '';
   termosAceitos: boolean = false;
+  loading: boolean = false; // Estado de carregamento
 
-  // Para múltiplas provas
-  provas: File[] = [];
+  // Imagens selecionadas
+  imagem: string = '';
   imagensProvas: string[] = [];
 
-  // Referências de Template para inputs de arquivo
-  @ViewChild('fileInputMain') fileInputMain!: ElementRef<HTMLInputElement>;
-  @ViewChild('fileInputProvas') fileInputProvas!: ElementRef<HTMLInputElement>;
-
   constructor(
-    private helpService: HelpService, 
+    private helpService: HelpService,
     private router: Router,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private alertController: AlertController
   ) {}
 
-  // Método para abrir o input de arquivo baseado no tipo
+  // Método para abrir o input de arquivo
   abrirFileInput(tipo: 'main' | 'provas'): void {
     if (tipo === 'main' && this.fileInputMain) {
       this.fileInputMain.nativeElement.click();
@@ -46,149 +47,155 @@ export class CriarHelpPage {
   }
 
   // Método para capturar a imagem principal
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      // Verifica o tamanho do arquivo (5 MB neste exemplo)
-      const maxSizeInMB = 5; // Defina o tamanho máximo permitido
-      const fileSizeInMB = file.size / (1024 * 1024);
-      
-      if (fileSizeInMB > maxSizeInMB) {
-        alert(`O arquivo deve ter no máximo ${maxSizeInMB} MB.`);
-        return;
-      }
-
-      this.compressImage(file, 'capa');
+  onFileSelectedMain(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files[0]) {
+      const file: File = fileInput.files[0];
+      this.readFile(file).then((dataUrl) => {
+        this.imagem = dataUrl;
+      }).catch((error) => {
+        console.error('Erro ao ler a imagem principal:', error);
+      });
     }
   }
 
-  // Método para capturar múltiplas provas
-  onProvasSelected(event: any): void {
-    const files: FileList = event.target.files;
-    const maxSizeInMB = 5; // Defina o tamanho máximo permitido por arquivo
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-
-      const fileSizeInMB = file.size / (1024 * 1024);
-      
-      if (fileSizeInMB > maxSizeInMB) {
-        alert(`Cada arquivo deve ter no máximo ${maxSizeInMB} MB.`);
-        continue; // Ignora o arquivo e continua com os próximos
-      }
-
-      this.compressImage(file, 'provas');
+  // Método para capturar as provas
+  onProvasSelected(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0) {
+      Array.from(fileInput.files).forEach(file => {
+        this.readFile(file).then((dataUrl) => {
+          this.imagensProvas.push(dataUrl);
+        }).catch((error) => {
+          console.error('Erro ao ler uma prova:', error);
+        });
+      });
     }
   }
 
-  // Método para comprimir a imagem
-  compressImage(file: File, tipo: 'capa' | 'provas'): void {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const img = new Image();
-      img.src = e.target?.result as string;
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d')!;
-        const MAX_WIDTH = 800; // largura máxima
-        const MAX_HEIGHT = 800; // altura máxima
-        let width = img.width;
-        let height = img.height;
-
-        // Calcular nova largura e altura mantendo a proporção
-        if (width > height) {
-          if (width > MAX_WIDTH) {
-            height *= MAX_WIDTH / width;
-            width = MAX_WIDTH;
-          }
-        } else {
-          if (height > MAX_HEIGHT) {
-            width *= MAX_HEIGHT / height;
-            height = MAX_HEIGHT;
-          }
-        }
-
-        canvas.width = width;
-        canvas.height = height;
-        ctx.drawImage(img, 0, 0, width, height);
-        canvas.toBlob((blob) => {
-          if (blob) {
-            const compressedFile = new File([blob], file.name, { type: file.type });
-            if (tipo === 'capa') {
-              this.arquivoSelecionado = compressedFile;
-              const newReader = new FileReader();
-              newReader.onload = () => {
-                this.imagem = newReader.result;
-              };
-              newReader.readAsDataURL(compressedFile);
-            } else if (tipo === 'provas') {
-              this.provas.push(compressedFile);
-              const newReader = new FileReader();
-              newReader.onload = () => {
-                this.imagensProvas.push(newReader.result as string);
-              };
-              newReader.readAsDataURL(compressedFile);
-            }
-          }
-        }, file.type, 0.7); // 0.7 é a qualidade da compressão (70%)
+  // Função para ler um arquivo e retornar uma Data URL
+  readFile(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        resolve(e.target?.result as string);
       };
-    };
-    reader.readAsDataURL(file);
+      reader.onerror = (error) => {
+        reject(error);
+      };
+      reader.readAsDataURL(file);
+    });
   }
 
-  // Método para apagar a imagem principal
+  // Método para remover a imagem principal
   apagarImagem(): void {
-    this.imagem = null;
-    this.arquivoSelecionado = null;
+    this.imagem = '';
     if (this.fileInputMain) {
       this.fileInputMain.nativeElement.value = '';
     }
   }
 
-  // Método para apagar as provas
+  // Método para apagar todas as provas
   apagarProvas(): void {
-    this.provas = [];
     this.imagensProvas = [];
     if (this.fileInputProvas) {
       this.fileInputProvas.nativeElement.value = '';
     }
   }
 
-  // Método para criar o help
+  // Método para criar o Help
   async criarHelp(): Promise<void> {
     if (!this.termosAceitos) {
-      alert('Você deve aceitar os termos de uso e condições.');
+      this.presentAlert('Termos de Uso', 'Você deve aceitar os termos de uso e condições.');
+      return;
+    }
+
+    if (!this.imagem) {
+      this.presentAlert('Imagem Principal', 'Por favor, selecione uma imagem principal.');
+      return;
+    }
+
+    if (this.quantia && isNaN(parseFloat(this.quantia))) {
+      this.presentAlert('Quantia Inválida', 'Por favor, insira uma quantia válida.');
+      return;
+    }
+
+    if (this.dataEncerramento && new Date(this.dataEncerramento) < new Date()) {
+      this.presentAlert('Data Inválida', 'A data de encerramento não pode ser no passado.');
       return;
     }
 
     const loading = await this.loadingController.create({
-      message: 'Enviando Help...',
+      message: 'Criando Help...',
     });
     await loading.present();
+    this.loading = true; // Ativa o estado de carregamento
 
-    // Preparar os dados para Firestore
+    // Preparar os dados do Help
     const helpData: Help = {
+      id: uuidv4(),
       nome: this.nome,
-      quantia: this.quantia,
-      dataEncerramento: this.dataEncerramento,
+      valorArrecadado: 0, // Inicializando como 0
+      valorMeta: parseFloat(this.quantia) || 0, // Meta de arrecadação
+      status: 'Em andamento', // Status inicial ao criar
+      quantia: parseFloat(this.quantia) || 0,
+      dataInicio: this.dataInicio, // Adicionando a data de início
+      dataEncerramento: new Date(this.dataEncerramento).toISOString(), // Converte para ISO
       categoria: this.categoria,
       descricao: this.descricao,
       chavePix: this.chavePix,
-      createdAt: new Date(),
-      imagemUrl: '',
-      provasUrls: []
+      imagemUrl: this.imagem,
+      criador: {
+        nome: 'Nome do Criador', // Substitua pelo nome real do criador
+        imagemUrl: 'URL da imagem do criador', // Substitua pela URL real da imagem
+      },
+      comprovantes: this.imagensProvas,
+      createdAt: new Date(), // Data de criação
+      encerradoEm: null // Inicialmente null, será preenchido ao encerrar o help
     };
 
-    // Chama o serviço para enviar o formulário com upload de imagens
-    this.helpService.criarHelp(helpData, this.arquivoSelecionado, this.provas).then(() => {
+    try {
+      // Adicionar o Help através do serviço
+      await this.helpService.addHelp(helpData);
+      this.presentAlert('Sucesso', 'Help criado com sucesso!');
+      this.limparCampos();
+      this.router.navigate(['/feed']);
+    } catch (error) {
+      console.error('Erro ao criar Help:', error);
+      this.presentAlert('Erro', 'Ocorreu um erro ao criar o Help. Tente novamente.');
+    } finally {
       loading.dismiss();
-      alert('Help criado com sucesso!');
-      this.router.navigate(['/feed']); // Redireciona para a página de Feed ou outra página de sua escolha
-    }).catch((error) => {
-      loading.dismiss();
-      console.error('Erro ao criar o Help', error);
-      const errorMessage = error.message || 'Erro desconhecido';
-      alert(`Erro ao criar o Help: ${errorMessage}`);
+      this.loading = false; // Desativa o estado de carregamento
+    }
+  }
+
+  // Método para limpar os campos após a criação do Help
+  limparCampos(): void {
+    this.nome = '';
+    this.quantia = '';
+    this.dataEncerramento = '';
+    this.categoria = '';
+    this.descricao = '';
+    this.chavePix = '';
+    this.termosAceitos = false;
+    this.imagem = '';
+    this.imagensProvas = [];
+    if (this.fileInputMain) {
+      this.fileInputMain.nativeElement.value = '';
+    }
+    if (this.fileInputProvas) {
+      this.fileInputProvas.nativeElement.value = '';
+    }
+  }
+
+  // Método para apresentar alertas
+  async presentAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
     });
+
+    await alert.present();
   }
 }

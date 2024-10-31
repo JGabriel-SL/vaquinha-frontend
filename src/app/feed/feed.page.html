@@ -1,50 +1,44 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <div id="buscar">
-      <ion-input placeholder="Buscar Helps"></ion-input>
-      <ion-button>
-        <ion-icon slot="icon-only" name="search"></ion-icon>
-      </ion-button>
-    </div>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterHelps()" placeholder="Buscar Helps">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="container">
     <h4>Alguns helps para você</h4>
-    <!-- Exemplo de card comentado -->
-    <!--
-    <ion-card>
-      <img alt="imagem-help" src="assets/Icones/golden-retriever-1.webp" />
+
+    <ion-card *ngFor="let help of filteredHelps">
+      <img alt="imagem-help" [src]="help.imagemUrl || 'assets/default-image.png'" />
+      
       <ion-card-header>
         <ion-card-title>
-          <span id="nome-help">Tratamento do Bob</span>
-          <ion-button class="salvo">
-            <i class="fa-regular fa-bookmark"></i>
+          <span id="nome-help">{{ help.nome }}</span>
+          <ion-button class="salvo" (click)="salvarHelp(help)">
+            <i class="fa" [ngClass]="help.salvo ? 'fa-solid fa-bookmark' : 'fa-regular fa-bookmark'"></i>
           </ion-button>
         </ion-card-title>
-        <ion-card-subtitle>Categoria: <span>Saúde</span></ion-card-subtitle>
+        <ion-card-subtitle>Categoria: <span>{{ help.categoria | titlecase }}</span></ion-card-subtitle>
       </ion-card-header>
+    
       <ion-card-content>
-        <span class="sifrao-valor-arrecadado">R$ </span><span class="valor-arrecadado"> </span> de <span class="sifrao-valor-meta">R$ </span><span class="valor-meta"> </span>
+        <div>
+          <span>Status:</span>
+          <strong>{{ help.status }}</strong> <!-- Status padrão ao criar o help -->
+        </div>
+
+        <span class="sifrao-valor-arrecadado">R$ </span>
+        <span class="valor-arrecadado">{{ help.valorArrecadado }}</span> de 
+        <span class="sifrao-valor-meta">R$ </span>
+        <span class="valor-meta">{{ help.valorMeta }}</span>
       </ion-card-content>
-      <ion-button fill="outline" class="botao-ver-detalhes" color="tertiary">Ver detalhes</ion-button>
+      
+      <ion-button fill="outline" class="botao-ver-detalhes" color="tertiary" (click)="verDetalhes(help.id)">
+        Ver detalhes
+      </ion-button>
     </ion-card>
-    -->
-    <ion-list>
-      <ion-item *ngFor="let help of helps$ | async">
-        <ion-thumbnail slot="start">
-          <img [src]="help.imagemUrl || 'assets/default-image.png'" alt="Imagem do Help" />
-        </ion-thumbnail>
-        <ion-label>
-          <h2>{{ help.nome }}</h2>
-          <p>Quantia: {{ help.quantia }}</p>
-          <p>Categoria: {{ help.categoria | titlecase }}</p>
-          <p>Data de Encerramento: {{ help.dataEncerramento | date }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
+  </div>    
 </ion-content>
 
 <ion-tab-bar slot="bottom">
@@ -56,7 +50,7 @@
     <i class="fa-solid fa-plus" name="criar-help"></i>
     Criar Help
   </ion-tab-button>
-  <ion-tab-button tab="meus-helps" [routerLink]="['/meus-helps']">
+  <ion-tab-button tab="meus-helps" [routerLink]="['/meus-helps/:id']">
     <i class="fa-solid fa-heart" name="meus-helps"></i>
     Meus Helps
   </ion-tab-button>

@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./feed/feed.module').then( m => m.FeedPageModule)
   },
   {
-    path: 'ver-detalhes-feed',
+    path: 'ver-detalhes-feed/:id',
     loadChildren: () => import('./ver-detalhes-feed/ver-detalhes-feed.module').then( m => m.VerDetalhesFeedPageModule)
   },
   {
@@ -32,15 +32,15 @@ const routes: Routes = [
     loadChildren: () => import('./termos-uso/termos-uso.module').then( m => m.TermosUsoPageModule)
   },
   {
-    path: 'meus-helps',
+    path: 'meus-helps/:id',
     loadChildren: () => import('./meus-helps/meus-helps.module').then( m => m.MeusHelpsPageModule)
   },
   {
-    path: 'editar-help',
+    path: 'editar-help/:id',
     loadChildren: () => import('./editar-help/editar-help.module').then( m => m.EditarHelpPageModule)
   },
   {
-    path: 'ver-detalhes-help',
+    path: 'meus-helps/ver-detalhes-help/:id',
     loadChildren: () => import('./ver-detalhes-help/ver-detalhes-help.module').then( m => m.VerDetalhesHelpPageModule)
   },
   {
@@ -59,6 +59,7 @@ const routes: Routes = [
     path: 'conta',
     loadChildren: () => import('./conta/conta.module').then( m => m.ContaPageModule)
   },
+
 ];
 
 @NgModule({

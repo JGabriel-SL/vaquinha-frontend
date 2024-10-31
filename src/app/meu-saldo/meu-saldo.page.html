@@ -1,21 +1,41 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
-      <ion-back-button default-href="../home/home.page.html"></ion-back-button>
+      <ion-back-button default-href="/conta"></ion-back-button>
     </ion-buttons>
     <ion-title>Meu saldo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <div class="container">
     <div class="espaco-saldo">
       <p>Saldo disponível:</p>
-      <h3>R$ <span id="saldo"></span></h3>
+      <h3>{{ valorArrecadado | currency: 'BRL' }}</h3>
+      <p>Saldo total de todos os helps:</p>
+      <h4>{{ saldoTotal | currency: 'BRL' }}</h4>
+    </div>
+  </div>
+
+  <!-- Parte dinâmica com informações do help encerrado -->
+  <ion-card *ngIf="helpSelecionado">  
+    <img 
+      alt="Imagem do help: {{ nome }}" 
+      [src]="imagemUrl || 'caminho/para/imagem/padrao.png'" 
+      class="help-imagem"
+    />
+
+    <div class="help-info">
+      <h2>{{ nome }}</h2>
+      <h3>{{ valorArrecadado | currency: 'BRL' }}</h3>
+      <p>Data de Início: {{ dataInicio | date: 'dd/MM/yyyy' }}</p>
+      <p>Data de Encerramento: {{ dataEncerramento | date: 'dd/MM/yyyy' }}</p>
     </div>
 
-    <ion-button class="botao-sacar">
+    <ion-button 
+      class="botao-sacar" 
+      (click)="sacar()">
       Sacar
     </ion-button>
-  </div>
+  </ion-card>
 </ion-content>

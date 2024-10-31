@@ -1,31 +1,56 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
-      <ion-back-button default-href="../home/home.page.html"></ion-back-button>
+      <ion-back-button default-href="../home/home.page.html" [routerLink]="['/home']"></ion-back-button>
     </ion-buttons>
     <ion-title>Termos de uso</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
   
   <div class="container">
-    <h3>Regras sobre o Help</h3>
-    <ol>
-      <li>Título e Descrição: O título e a descrição devem ser claros, focados em causas de saúde ou necessidade urgente, sem termos ofensivos ou ambiguidades. Haverá validação automática e manual para garantir a legitimidade.</li>
-  
-      <li>Meta Financeira: O valor definido deve ser coerente com a causa. O sistema pode sugerir um valor médio baseado em campanhas semelhantes.</li>
-  
-      <li>Data Final: A arrecadação deve durar entre 7 dias e 12 meses, considerando a urgência da causa.
-      </li>
-  
-      <li>Categoria da Campanha: A campanha deve se enquadrar em categorias pré-aprovadas (saúde, desastres, etc.) e será rejeitada se for para fins comerciais ou luxuosos.</li>
-  
-      <li>Validação Manual: Moderadores revisarão todas as campanhas para garantir conformidade com as diretrizes.</li>
-  
-      <li>Autenticidade e Evidências: Pode ser necessário fornecer provas, como relatórios médicos ou boletins de ocorrência, para justificar a causa.</li>
-  
-      <li>Limite por Usuário: Cada usuário pode ter no máximo 3 campanhas ativas simultâneas.</li>
-    </ol>
+    <h2>Termos de uso</h2>  
+    <p>
+      
+        Descrição mais detalha de conceitos utilizados na aplicação para fins de documentação e criação de regulamento (que deverá ser aceito pelo usuário na criação da sua conta).
+      
+      ## **Transações**
+      
+      - As transações só podem ser realizadas em um fundo colaborativo **válido**. Logo, somente em fundos que não passaram do prazo estipulado na criação do mesmo.
+      - As transações são feitas por meio de uma tecnólogia de terceiro.
+      - Toda transação é segura de acordo com …
+      
+      ## Criação de fundo colaborativo
+      
+      - O fundo colaborativo, quando criado, precisar ser publicado para que seja validado internamente para liberar a arrecadação
+      - **Critérios de Aceitação para Publicação de Arrecadação Coletiva** 
+          1. **Título e Descrição:**
+              - **Critério**: O usuário deve submeter um título e uma descrição clara, que estejam diretamente relacionados a causas de saúde, necessidades urgentes (como perda de bens), ou outras causas similares de bem-estar.
+              - **Aceitação**: A publicação será considerada aceita se o título e a descrição não contiverem termos ofensivos, ambíguos ou que fujam do propósito de arrecadação em prol de um bem. Deve haver uma validação automática e manual para garantir que a causa seja válida.
+          2. **Meta Financeira (Valor da Vaquinha):**
+              - **Critério**: O usuário deve definir um valor a ser arrecadado que esteja de acordo com a causa descrita (saúde, necessidade urgente, etc.). O valor não pode ser excessivamente alto ou destoar da necessidade apresentada.
+              - **Aceitação**: A meta será considerada válida se for razoável e coerente com o tipo de campanha e a urgência apresentada na descrição. O sistema pode sugerir um valor médio baseado em campanhas anteriores similares.
+          3. **Data Final:**
+              - **Critério**: O usuário deve definir uma data final para a arrecadação que não seja inferior a 7 dias e não ultrapasse 12 meses a partir da data de criação.
+              - **Aceitação**: A campanha será aceita se a data final estiver dentro do período permitido e se for consistente com a urgência da causa apresentada.
+          4. **Categoria da Campanha (Prol de um Bem Maior):**
+              - **Critério**: A arrecadação deve ser exclusivamente para causas de saúde, necessidade por perda de bens (incêndio, desastre natural, etc.), ou outras causas semelhantes que busquem promover o bem-estar.
+              - **Aceitação**: A campanha será validada se pertencer a uma categoria pré-aprovada, como saúde ou necessidade, e será recusada automaticamente se for destinada a fins comerciais, pessoais de luxo, ou propósitos que não estejam alinhados com as diretrizes de "arrecadação em prol de um bem".
+          5. **Validação Manual (Moderadores):**
+              - **Critério**: Todas as campanhas submetidas devem passar por uma validação manual por moderadores para garantir que estejam em conformidade com as diretrizes de causas aceitáveis.
+              - **Aceitação**: A campanha será publicada somente após a equipe de moderação revisar e aprovar manualmente os dados fornecidos pelo usuário, assegurando que a causa é legítima e coerente.
+          6. **Autenticidade e Evidências:**
+              - **Critério**: O usuário pode ser solicitado a fornecer provas ou evidências que justifiquem a causa da arrecadação, como relatórios médicos, boletins de ocorrência ou declarações de emergência.
+              - **Aceitação**: A campanha só será aprovada se o usuário fornecer evidências válidas e consistentes com a natureza da causa descrita.
+          7. **Limite de Criação por Usuário:**
+              - **Critério**: Um mesmo usuário pode criar no máximo 3 campanhas ativas simultâneas para evitar abuso do sistema.
+              - **Aceitação**: A campanha só será publicada se o usuário não ultrapassar o limite de campanhas ativas simultâneas.
+      
+      ## Coleta de  fundo colaborativo acumulado
+      
+      - A coleta do valor acumulado do fundo colaborativo somente estará disponivel ao final da data estipulada na criação do mesmo.
+    
+    </p>
   </div>
 </ion-content>

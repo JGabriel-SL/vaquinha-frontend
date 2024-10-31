@@ -26,3 +26,12 @@ ion-content {
     margin-bottom: 20px;
     line-height: 1.5rem;
 }
+
+.scrollable-text {
+    max-height: 200px; 
+    overflow-y: auto;  
+}
+
+h2{
+    text-align: center;
+}

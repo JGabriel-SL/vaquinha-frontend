@@ -1,65 +1,51 @@
+<!-- src/app/conta/conta.page.html -->
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-title>Conta</ion-title>
   </ion-toolbar>
 </ion-header>
 
-
-
-<ion-tabs>
-  <ion-content [fullscreen]="true">
-    <div class="container">
-      
-      <div class="imagem-nome-usuario">
-        <div class="imagem-usuario">
-          <img src="https://i.pinimg.com/474x/98/43/1a/98431a96f44d5e42094cab4db691901a.jpg" alt="foto-usuario">
-        </div>
-        <div class="informacoes-usuario">
-          <span class="nome-usuario">Lucas Marinho</span>
-          <span class="email-usuario">lucasmarinho</span>
-        </div>
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <div class="imagem-nome-usuario">
+      <div class="imagem-usuario">
+        <img [src]="userInfo.imagemUrl" alt="foto-usuario" />
       </div>
-
-
-      <div class="opcoes-conta">
-        <ion-button id="botao-editar-conta" [routerLink]="['/editar-conta']"><i class="fa-solid fa-pen-to-square"></i> Editar conta</ion-button>
-        <ion-button id="botao-helps-salvos" [routerLink]="['/helps-salvos']"><i class="fa-solid fa-bookmark"></i>
-          Helps salvos</ion-button>
-        <ion-button id="botao-meu-saldo" [routerLink]="['/meu-saldo']" ><i class="fa-solid fa-money-bill"></i> Meu saldo</ion-button>
-
-        <ion-button class="botao-sair"><i class="fa-solid fa-right-from-bracket"></i>Sair</ion-button>
+      <div class="informacoes-usuario">
+        <span class="nome-usuario">{{ userInfo.nome }}</span>
+        <span class="email-usuario">{{ userInfo.email }}</span>
       </div>
-  
+    </div>
 
+    <div class="opcoes-conta">
+      <ion-button id="botao-editar-conta" [routerLink]="['/editar-conta']">
+        <i class="fa-solid fa-pen-to-square"></i> Editar conta
+      </ion-button>
+      <ion-button id="botao-helps-salvos" [routerLink]="['/helps-salvos']">
+        <i class="fa-solid fa-bookmark"></i> Helps salvos
+      </ion-button>
+      <ion-button id="botao-meu-saldo" [routerLink]="['/meu-saldo']">
+        <i class="fa-solid fa-money-bill"></i> Meu saldo
+      </ion-button>
+      <ion-button class="botao-sair" (click)="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i> Sair
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
 
-    </div>  
-  </ion-content>
-
-
-  <!-- MENU -->
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="feed" [routerLink]="['/feed']">
-      <i class="fa-solid fa-bars" name="feed"></i>
-      Feed
-    </ion-tab-button>
-    <ion-tab-button tab="criar-help" [routerLink]="['/criar-help']">
-      <i class="fa-solid fa-plus" name="criar-help"></i>
-      Criar Help
-    </ion-tab-button>
-    <ion-tab-button tab="meus-helps" [routerLink]="['/meus-helps']">
-      <i class="fa-solid fa-heart" name="meus-helps"></i>
-      Meus Helps
-    </ion-tab-button>
-    <ion-tab-button tab="conta" class="ativo" [routerLink]="['/conta']">
-      <i class="fa-solid fa-user" name="conta"></i>
-      Conta
-    </ion-tab-button>
-  </ion-tab-bar>
-  
-
-
-
-
-
-
-
+<!-- Menu -->
+<ion-tab-bar slot="bottom">
+  <ion-tab-button tab="feed" [routerLink]="['/feed']">
+    <i class="fa-solid fa-bars" name="feed"></i> Feed
+  </ion-tab-button>
+  <ion-tab-button tab="criar-help" [routerLink]="['/criar-help']">
+    <i class="fa-solid fa-plus" name="criar-help"></i> Criar Help
+  </ion-tab-button>
+  <ion-tab-button tab="meus-helps" [routerLink]="['/meus-helps/:id']">
+    <i class="fa-solid fa-heart" name="meus-helps"></i> Meus Helps
+  </ion-tab-button>
+  <ion-tab-button tab="conta" class="ativo" [routerLink]="['/conta']">
+    <i class="fa-solid fa-user" name="conta"></i> Conta
+  </ion-tab-button>
+</ion-tab-bar>

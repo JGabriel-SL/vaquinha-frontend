@@ -4,8 +4,12 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+ion-title{
+    --color: #fff;
+}
+
 ion-back-button {
-    --color: #6F66E9;
+    color: #fff;
 }
 
 ion-toolbar {

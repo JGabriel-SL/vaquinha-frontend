@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
 
 import { VerDetalhesHelpPageRoutingModule } from './ver-detalhes-help-routing.module';
 
-import { VerDetalhesHelpPage } from './ver-detalhes-help.page';
+import { VerDetalhesHelpPage } from './ver-detalhes-help.page'; // Certifique-se de que está correto
 
 @NgModule({
   imports: [
@@ -15,6 +14,6 @@ import { VerDetalhesHelpPage } from './ver-detalhes-help.page';
     IonicModule,
     VerDetalhesHelpPageRoutingModule
   ],
-  declarations: [VerDetalhesHelpPage]
+  declarations: [VerDetalhesHelpPage] // Certifique-se de que está declarado corretamente
 })
 export class VerDetalhesHelpPageModule {}

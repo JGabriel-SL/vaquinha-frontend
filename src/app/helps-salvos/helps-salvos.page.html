@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
-      <ion-back-button default-href="../home/home.page.html"></ion-back-button>
+      <ion-back-button default-href="../app/conta/conta.page"></ion-back-button>
     </ion-buttons>
     <ion-title>Helps salvos</ion-title>
   </ion-toolbar>
@@ -31,7 +31,35 @@
       <ion-button fill="outline" class="botao-ver-detalhes" color="tertiary">Ver detalhes</ion-button>
     </ion-card>
     -->
-
+    <ion-card *ngFor="let help of (helps$ | async)">
+      <img alt="imagem-help" [src]="help.imagemUrl || 'assets/default-image.png'" />
+      
+      <ion-card-header>
+        <ion-card-title>
+          <span id="nome-help">{{ help.nome }}</span>
+          <ion-button class="salvo" (click)="salvarHelp(help)">
+            <i class="fa" [ngClass]="help.salvo ? 'fa-solid fa-bookmark' : 'fa-regular fa-bookmark'"></i>
+          </ion-button>
+        </ion-card-title>
+        <ion-card-subtitle>Categoria: <span>{{ help.categoria | titlecase }}</span></ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <div>
+          <span>Status:</span>
+          <strong>Em andamento</strong>
+        </div>
+    
+        <span class="sifrao-valor-arrecadado">R$ </span>
+        <span class="valor-arrecadado">{{ help.valorArrecadado }}</span> de 
+        <span class="sifrao-valor-meta">R$ </span>
+        <span class="valor-meta">{{ help.valorMeta }}</span>
+      </ion-card-content>
+    
+      <ion-button fill="outline" class="botao-ver-detalhes" color="tertiary" (click)="verDetalhes(help.id)">
+        Ver detalhes
+      </ion-button>
+    </ion-card>    
     
   </div>
 </ion-content>

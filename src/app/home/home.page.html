@@ -54,9 +54,9 @@
     <section id="botoes">
       <ion-button expand="block" type="submit" class="botao-entrar bordar-radius" (click)="login()">Entrar</ion-button>
       <ion-button fill="outline" class="botao-google bordar-radius" expand="block"> <ion-img src="assets/Icones/google-icon.svg"></ion-img> Entrar com o Google</ion-button>
-      <ion-button expand="block" color="tertiary" fill="outline">Cadastre-se</ion-button>
+      <ion-button expand="block" [routerLink]="['/cadastro']" color="tertiary" fill="outline">Cadastre-se</ion-button>
 
-      <p style="text-align: center;">Esqueceu a senha? <a href="#">Clique aqui!</a></p>
+      <p style="text-align: center;">Esqueceu a senha? <a href="#" [routerLink]="['/termos-uso']">Clique aqui!</a></p>
     </section>
   </form>
 </ion-content>

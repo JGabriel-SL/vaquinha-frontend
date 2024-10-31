@@ -107,9 +107,21 @@ ion-card-content span.sifrao-valor-meta{
     font-weight: bold;
 }
 
-
-
-
+.encerrado {
+    background-color: #ffe6e6 !important;
+    border: 1px solid #f5c6cb !important;
+    color: #d9534f !important;
+  }
+  
+  .encerrado ion-card-header {
+    font-weight: bold !important;
+  }
+  
+  .encerrado .status {
+    color: #d9534f !important;
+    font-weight: bold !important;
+  }  
+  
 ion-select {
     width: 100%;
     margin-top: 15px;

@@ -1,66 +1,70 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
-      <ion-back-button default-href="../home/home.page.html"></ion-back-button>
+      <ion-back-button [routerLink]="['/meus-helps']"></ion-back-button>
     </ion-buttons>      
     <ion-title>Editar Help</ion-title>
   </ion-toolbar>
 </ion-header>
 
-
-
 <ion-content [fullscreen]="true">
   <div class="container">
-    <form>
-      <ion-input type="text" placeholder="Nome do Help" id="nome-help"></ion-input>
+    <form (submit)="atualizarHelp()">
+      <!-- Nome do Help -->
+      <ion-input type="text" [(ngModel)]="helpInfo.nome" placeholder="Nome do Help" id="nome-help" name="nome-help"></ion-input>
 
-      <ion-input type="text" placeholder="De quanto precisa?" id="quantia-help"></ion-input>
+      <!-- Quantia necessária -->
+      <ion-input type="number" [(ngModel)]="helpInfo.quantia" placeholder="De quanto precisa?" id="quantia-help" name="quantia-help"></ion-input>
 
+      <!-- Data de encerramento -->
       <ion-label for="data-encerramento">Data de encerramento:</ion-label>
-      <ion-input type="date" id="data-encerramento"></ion-input>
+      <ion-input type="date" [(ngModel)]="helpInfo.dataEncerramento" id="data-encerramento" name="data-encerramento"></ion-input>
 
-      <ion-select label="Categoria" label-placement="floating" id="categoria">
+      <!-- Categoria -->
+      <ion-select [(ngModel)]="helpInfo.categoria" label="Categoria" label-placement="floating" id="categoria" name="categoria">
         <ion-select-option value="saude">Saúde</ion-select-option>
-        <ion-select-option value="educação">Educação</ion-select-option>
+        <ion-select-option value="educacao">Educação</ion-select-option>
         <ion-select-option value="comunidade">Comunidade</ion-select-option>
         <ion-select-option value="emergencia">Emergência</ion-select-option>
       </ion-select>
 
+      <!-- Descrição do Help -->
       <p>Descrição do Help:</p>
-      <ion-textarea rows="10" placeholder="Insira a descrição do Help" id="descricao-help"></ion-textarea>
+      <ion-textarea [(ngModel)]="helpInfo.descricao" rows="10" placeholder="Insira a descrição do Help" id="descricao-help" name="descricao-help"></ion-textarea>
 
-      <p>Imagem da capa do Help:</p>
-      <div class="imagem-help">
-        <!-- <img src="https://love.doghero.com.br/wp-content/uploads/2018/12/golden-retriever-1.png"  alt="imagem-help" > -->
-      </div>
-      <ion-button class="botao-imagem-help" fill="outline" color="tertiary">Selecione uma imagem</ion-button>
-
+      <!-- Chave Pix -->
       <ion-label for="chave-pix">Chave pix:</ion-label>
-      <ion-input placeholder="Insira a chave pix" id="chave-pix"></ion-input>
+      <ion-input [(ngModel)]="helpInfo.chavePix" placeholder="Insira a chave pix" id="chave-pix" name="chave-pix"></ion-input>
 
-      <p>Anexar Provas (Fotos, Imagens):</p>
-      <ion-button class="botao-imagem-provas" fill="outline" color="tertiary">Selecione as imagens</ion-button>
-      <div class="imagens-provas">
-        <div class="imagem-prova">
-          <!-- <img src="https://love.doghero.com.br/wp-content/uploads/2018/12/golden-retriever-1.png" alt="" loading="lazy"> -->
+      <!-- Campo para selecionar imagem -->
+      <ion-label for="imagem-help">Imagem do Help:</ion-label>
+      <input type="file" id="imagem-help" (change)="onFileSelected($event)" accept="image/*" />
+
+      <!-- Pré-visualização da imagem -->
+      <div *ngIf="helpInfo.imagemUrl">
+        <p>Pré-visualização da imagem:</p>
+        <img [src]="helpInfo.imagemUrl" alt="Imagem do Help" width="100%" />
+        <!-- Botão para remover a imagem -->
+        <ion-button color="danger" (click)="removerImagem()">Remover Imagem</ion-button>
+      </div>
+
+      <!-- Campo para selecionar imagens de comprovantes -->
+      <ion-label for="comprovantes">Imagens de comprovantes:</ion-label>
+      <input type="file" id="comprovantes" (change)="onComprovantesSelected($event)" multiple accept="image/*" />
+
+      <!-- Pré-visualização dos comprovantes -->
+      <div *ngIf="helpInfo.comprovantes && helpInfo.comprovantes.length > 0">
+        <p>Comprovantes:</p>
+        <div *ngFor="let comprovante of helpInfo.comprovantes; let i = index">
+          <img [src]="comprovante" alt="Comprovante" width="100%" />
+          <!-- Botão para remover o comprovante -->
+          <ion-button color="danger" (click)="removerComprovante(i)">Remover Comprovante</ion-button>
         </div>
       </div>
 
-      <ion-button class="botao-imagem-provas" fill="outline">Apagar a imagem</ion-button>
-      
-      
-
-
-      <ion-button  class="botao-salvar">Salvar Alterações</ion-button>
+      <!-- Botão para salvar as alterações -->
+      <ion-button class="botao-salvar" expand="full" type="submit">Salvar Alterações</ion-button>
     </form>
-
-
-  </div>  
+  </div>
 </ion-content>
-
-
-
-
-
-
 

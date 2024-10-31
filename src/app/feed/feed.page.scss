@@ -10,6 +10,10 @@ ion-toolbar{
     --padding-end: 2rem;
 }
 
+ion-searchbar{
+    color: #6F66E9;
+    border-radius: 20px;
+}
 
 #buscar {
     display: flex;
@@ -122,6 +126,9 @@ ion-card ion-button.botao-ver-detalhes {
     margin-left: 1rem;
 }
 
+ion-button:hover{
+    color: #6F66E9;
+}
 
 
 

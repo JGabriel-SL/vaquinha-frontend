@@ -4,48 +4,42 @@
   </ion-toolbar>
 </ion-header>
 
-
-
-<ion-tabs>
-  <ion-content [fullscreen]="true">
-    <div class="container">
-       
-      <ion-card>
-        <img alt="imagem-help" src="assets/Icones/golden-retriever-1.webp" />
-        <ion-card-header>
-          <ion-card-title>
-            <span id="nome-help">Tratamento do Bob</span>
-            <ion-button class="salvo">
-              <i class="fa-regular fa-bookmark"></i>
-            </ion-button>
-          </ion-card-title>
-  
-          <ion-card-subtitle>Categoria: <span>Saúde</span></ion-card-subtitle>
-        </ion-card-header>
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ion-card *ngFor="let help of meusHelps$ | async" [ngClass]="{'encerrado': help.status === 'encerrado'}">
+      <img alt="imagem-help" [src]="help.imagemUrl" />
+      <ion-card-header>
+        <ion-card-title>
+          <span id="nome-help">{{ help.nome }}</span>
+        </ion-card-title>
+        <ion-card-subtitle>
+          Categoria: <span>{{ help.categoria | titlecase }}</span>
+        </ion-card-subtitle>
+      </ion-card-header>
       
-        <ion-card-content>
-          <span class="sifrao-valor-arrecadado">R$ </span><span class="valor-arrecadado"> </span> de <span class="sifrao-valor-meta">R$ </span><span class="valor-meta"> </span>
-          
-          <p>Status: <span id="status" class="nao-ativo" >Encerrado</span></p>
+      <ion-card-content>
+        <span class="sifrao-valor-arrecadado">R$ </span>
+        <span class="valor-arrecadada">{{ help.valorArrecadado }}</span> de 
+        <span class="sifrao-valor-meta">R$ </span>
+        <span class="valor-meta">{{ help.valorMeta }}</span>
+        
+        <div>
+          <span>Status:</span>
+          <strong class="status">{{ help.status }}</strong>
+        </div>
 
-          <ion-select label="Gerenciar" label-placement="floating"  id="gerenciar">
-            <ion-select-option value="encerrar-help">Encerrar Help</ion-select-option>
-            <ion-select-option value="editar-help">Editar Help</ion-select-option>
-            <ion-select-option value="ver-detalhes">Ver detalhes</ion-select-option>
-          </ion-select>
-        </ion-card-content>
-
-      </ion-card>
+        <ion-select label="Gerenciar" label-placement="floating" id="gerenciar" (ionChange)="gerenciarHelp($event, help.id)">
+            <ion-select-option *ngIf="help.status === 'encerrado'" value="sacar-agora">Sacar Agora</ion-select-option>
       
-      
-
-      
-
-
-      
-      
-    </div>
-  </ion-content>
+            <!-- Outros botões estão desabilitados se o help estiver encerrado -->
+            <ion-select-option value="editar-help" [disabled]="help.status === 'encerrado'">Editar Help</ion-select-option>
+            <ion-select-option value="ver-detalhes" [disabled]="help.status === 'encerrado'">Ver Detalhes</ion-select-option>
+            <ion-select-option value="encerrar-help" [disabled]="help.status === 'encerrado'">Encerrar Help</ion-select-option>
+        </ion-select>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
 
 
   <!-- MENU -->

@@ -4,6 +4,7 @@ export const environment = {
   firebase: {
     apiKey: "AIzaSyDEH7u1HHIEyx0cL1zsaPiGmJC3D4snsY0",
     authDomain: "helppot-cea94.firebaseapp.com",
+    databaseURL: "https://helppot-cea94-default-rtdb.firebaseio.com",
     projectId: "helppot-cea94",
     storageBucket: "helppot-cea94.appspot.com",
     messagingSenderId: "192547225590",

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { VerDetalhesHelpPage } from './ver-detalhes-help.page';
+import { VerDetalhesHelpPage } from './ver-detalhes-help.page'; // Verifique a importação
 
 const routes: Routes = [
   {
